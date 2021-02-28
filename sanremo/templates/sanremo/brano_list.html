@@ -1,37 +1,38 @@
 {%  extends "sanremo/base.html"  %}
 
 {% block content %}
-    <h1>Brani in gara</h1>
-    {% if brano_list %}
-        <div class="row">
-            {% for brano in brano_list %}
-                <div class="col-xl-4 col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <a href="{{ brano.get_absolute_url }}"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="{{ brano.get_absolute_url }}">{{ brano.titolo }}</a>
-                            </h4>
-                            <p>
-                                {% for interprete in brano.interpreti.all %}
-                                    {% if not forloop.first %}
-                                        {% if forloop.last  %}
-                                             e
-                                        {% else %}
-                                            ,
+    <div class="content" style="margin-top:10px;">
+        {% if brano_list %}
+            <div class="row">
+                {% for brano in brano_list %}
+                    <div class="col-xl-4 col-lg-4 col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <a href="{{ brano.get_absolute_url }}"><img class="card-img-top" src={{ brano.foto.url }} alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="{{ brano.get_absolute_url }}">{{ brano.titolo }}</a>
+                                </h4>
+                                <p>
+                                    {% for interprete in brano.interpreti.all %}
+                                        {% if not forloop.first %}
+                                            {% if forloop.last  %}
+                                                e
+                                            {% else %}
+                                                ,
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
-                                    {{ interprete }}
-                                {% endfor %}
-                            </p>
-                        <p><a class="btn btn-secondary" href="{{ brano.get_absolute_url }}">Vota &raquo;</a></p>
+                                        {{ interprete }}
+                                    {% endfor %}
+                                </p>
+                                <p><a class="btn btn-secondary" href="{{ brano.get_absolute_url }}">Vota &raquo;</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>Nessun brano in gara</p>
-    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Nessun brano in gara</p>
+        {% endif %}
+    </div>
 {% endblock %}
 

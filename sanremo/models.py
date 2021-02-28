@@ -14,7 +14,7 @@ class Artista(models.Model):
     wiki_url = models.TextField(null=True, blank=True, help_text="Inserisci l'URL di wikipedia, se esiste")
 
     def __str__(self):
-        artista = self.nome_breve
+        artista = self.nome_breve()
         if self.nome_completo is not None:
             artista += " (" + self.nome_completo + ")"
         return artista
@@ -25,13 +25,14 @@ class Artista(models.Model):
 
 class Brano(models.Model):
     titolo = models.CharField(max_length=40)
-    testo = ArrayField(models.TextField())
+    testo = models.TextField(null=True, blank=True, help_text="Inserisci il testo del brano")
     interpreti = models.ManyToManyField(Artista,
                                         help_text="Seleziona l'interprete o gli interpreti",
                                         related_name="interpreti")
     autori = models.ManyToManyField(Artista,
                                     help_text="Seleziona l'autore o gli autori",
                                     related_name="autori")
+    foto = models.ImageField(upload_to='media')
 
     def __str__(self):
         return self.titolo
