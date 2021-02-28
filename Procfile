@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn Votiamo_Sanremo_2021.wsgi
