@@ -69,3 +69,6 @@ class Valutazione(models.Model):
                + " il brano " + self.brano.__str__() \
                + " nella categoria " + self.categoria.__str__()
 
+    def get_categoria(self):
+        return dict(CATEGORIA).get(self.categoria)
+
