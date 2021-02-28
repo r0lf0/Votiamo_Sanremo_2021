@@ -5,11 +5,11 @@ from django.urls import reverse
 
 
 class Artista(models.Model):
-    nome_completo = models.CharField(max_length=40,
-                                     help_text="Inserisci il nome completo dell'artista (niente se è un gruppo o se "
-                                               "coincide con il nome d'arte)")
     nome_darte = models.CharField(max_length=40,
                                   help_text="Inserisci il nome d'arte dell'artista")
+    nome_completo = models.CharField(max_length=40, null=True, blank=True,
+                                     help_text="Inserisci il nome completo dell'artista (niente se è un gruppo o se "
+                                               "coincide con il nome d'arte)")
     is_Gruppo = models.BooleanField(default=False, help_text="Inserisci vero se è un gruppo, falso altrimenti")
     wiki_url = models.TextField(null=True, blank=True, help_text="Inserisci l'URL di wikipedia, se esiste")
 
