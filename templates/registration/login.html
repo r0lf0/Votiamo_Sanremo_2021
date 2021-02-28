@@ -8,15 +8,6 @@
                 <p style="margin-top: 20px">Combinazione nome utente e password sbagliata</p>
             {% endif %}
 
-            {% if next %}
-                {% if user.is_authenticated %}
-                    <p style="margin-top: 20px">Non hai il permesso di accedere a questa pagina.</p>
-                {% else %}
-                    <p style="margin-top: 20px">Effettua l'accesso per visualizzare la pagina richiesta.</p>
-                {% endif %}
-            {% endif %}
-
-
             <h1 class="h3 mb-3 font-weight-normal" style="margin-top: 50px">Inserisci le credenziali</h1>
 
             <form method="post" action="{% url 'login' %}" style="margin-top: 20px">
