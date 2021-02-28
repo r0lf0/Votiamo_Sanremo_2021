@@ -21,7 +21,15 @@
                         </h4>
                         <ul class="list-group list-group-flush">
                             {% for interprete in brano.interpreti.all %}
-                                <li class="list-group-item">{{ interprete }}</li>
+                                <li class="list-group-item">
+                                    {% if interprete.wiki_url %}
+                                        <a href="{{ interprete.wiki_url }}" target="_blank">
+                                    {% endif %}
+                                    {{ interprete }}
+                                    {% if interprete.wiki_url %}
+                                        </a>
+                                    {% endif %}
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -35,7 +43,15 @@
                         </h4>
                         <ul class="list-group list-group-flush">
                             {% for autore in brano.autori.all %}
-                                <li class="list-group-item">{{ autore }}</li>
+                                <li class="list-group-item">
+                                    {% if autore.wiki_url %}
+                                        <a href="{{ autore.wiki_url }}" target="_blank">
+                                    {% endif %}
+                                    {{ autore }}
+                                    {% if autore.wiki_url %}
+                                        </a>
+                                    {% endif %}
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
