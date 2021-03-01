@@ -42,13 +42,6 @@ class Brano(models.Model):
         return reverse('sanremo-brano', args=[str(self.id)])
 
 
-CATEGORIA = (
-    ('i', 'Interpretazione'),
-    ('b', 'Brano'),
-    ('o', 'Outfit'),
-)
-
-
 class Valutazione(models.Model):
     utente = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -56,19 +49,12 @@ class Valutazione(models.Model):
     )
     brano = models.ForeignKey(Brano, help_text="Seleziona il brano",
                               on_delete=models.PROTECT)
-    voto = models.FloatField()
-    categoria = models.CharField(
-        max_length=1,
-        choices=CATEGORIA,
-        help_text='Scegli la categoria da votare',
-    )
+    voto_brano = models.FloatField()
+    voto_interpretazione = models.FloatField()
+    voto_outfit = models.FloatField()
 
     def __str__(self):
         return self.utente.__str__() \
                + " ha valutato " + self.voto.__str__() \
                + " il brano " + self.brano.__str__() \
                + " nella categoria " + self.categoria.__str__()
-
-    def get_categoria(self):
-        return dict(CATEGORIA).get(self.categoria)
-

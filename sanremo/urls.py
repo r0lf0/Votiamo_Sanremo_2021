@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.BranoListView.as_view(), name='sanremo-brani'),
     path('brani/<int:pk>', views.BranoDetailView.as_view(), name='sanremo-brano'),
-    path('about/', views.about, name='sanremo-about'),
 ]
 
 if settings.DEBUG:
@@ -16,4 +15,8 @@ if settings.DEBUG:
 # Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+]
+
+urlpatterns += [
+    path('brani/<int:pk>/vota/', views.vota_brano, name='vota-brano'),
 ]

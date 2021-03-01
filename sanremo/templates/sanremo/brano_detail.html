@@ -102,13 +102,23 @@
                                 La tua valutazione
                             </h4>
                             {% if valutazioni %}
-                                <ul class="list-group list-group-flush">
+                                {% if valutazioni.count > 1 %}
+                                    <p>Situazione incosistente, segnala a Ricky!</p>
+                                {% else %}
                                     {% for valutazione in valutazioni %}
-                                        <li class="list-group-item">
-                                            {{ valutazione.get_categoria }}: {{ valutazione.voto }}
-                                        </li>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                Brano: {{ valutazione.voto_brano }}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Interpretazione: {{ valutazione.voto_interpretazione }}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Outfit: {{ valutazione.voto_outfit }}
+                                            </li>
+                                        </ul>
                                     {% endfor %}
-                                </ul>
+                                {% endif %}
                             {% endif %}
                             <div class="text-center">
                                 <button type="button" class="btn btn-primary col-12 col-md-6" data-toggle="modal"
@@ -133,13 +143,18 @@
                         <span>&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-primary">Salva</button>
-                </div>
+                <form action="{% url 'vota-brano' pk=brano.id %}" method="post">
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <ul>
+                            {{ form.as_ul }}
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        <input type="submit" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
