@@ -52,9 +52,3 @@ class Valutazione(models.Model):
     voto_brano = models.FloatField()
     voto_interpretazione = models.FloatField()
     voto_outfit = models.FloatField()
-
-    def __str__(self):
-        return self.utente.__str__() \
-               + " ha valutato " + self.voto.__str__() \
-               + " il brano " + self.brano.__str__() \
-               + " nella categoria " + self.categoria.__str__()
