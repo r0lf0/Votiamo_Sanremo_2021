@@ -20,3 +20,7 @@ urlpatterns += [
 urlpatterns += [
     path('brani/<int:pk>/vota/', views.vota_brano, name='vota-brano'),
 ]
+
+urlpatterns += [
+    path('register/', views.registrati, name='registrati')
+]

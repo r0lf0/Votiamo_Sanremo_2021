@@ -1,19 +1,18 @@
 {% extends "sanremo/base.html" %}
 
 {% block content %}
-    <div class="container d-flex h-100 flex-column">
+    <div class="container">
 
-        <div class="row justify-content-center align-items-center">
-            {% if form.errors %}
+        {% if form.errors %}
+            <div class="text-center">
                 <p style="margin-top: 20px">Combinazione nome utente e password sbagliata</p>
-            {% endif %}
-
-            <h1 class="h3 mb-3 font-weight-normal" style="margin-top: 50px">Inserisci le credenziali</h1>
-
+            </div>
+        {% endif %}
+        <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
             <form method="post" action="{% url 'login' %}" style="margin-top: 20px">
                 {% csrf_token %}
-                <table>
-                    <tr>
+                <table class="mx-auto">
+                    <tr >
                         <td>{{ form.username.label_tag }}</td>
                         <td>{{ form.username }}</td>
                     </tr>
@@ -23,11 +22,12 @@
                     </tr>
                 </table>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" value="login" style="margin-top: 20px">Accedi</button>
+                <div class="text-center">
+                    <input type="submit" value="Accedi" class="btn btn-success" style="margin-top: 20px">
+                </div>
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>
         </div>
-    </div>
     </div>
 
 {% endblock %}

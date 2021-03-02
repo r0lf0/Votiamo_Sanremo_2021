@@ -18,3 +18,11 @@ class ValutazioneForm(forms.Form):
         })
 
         super().__init__(*args, **kwargs)
+
+
+class RegistratiForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    conferma_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cognome = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))

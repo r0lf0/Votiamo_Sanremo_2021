@@ -1,0 +1,49 @@
+{% extends "sanremo/base.html" %}
+
+{% block content %}
+    <div class="container ">
+        <form class="text-center" action="{% url 'registrati' %}" method="post">
+            {% csrf_token %}
+            <h1>Registrazione</h1>
+            {% if error_message %}
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                </div>
+            {% endif %}
+
+            <div class="form-group clearfix">
+                <label for="{{ form.username.id_for_label }}" class="control-label">Username<span class="text-red">*</span>:</label>
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label for="{{ form.password.id_for_label }}" class="control-label ">Password<span class="text-red">*</span>:</label>
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    {{ form.password }}
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label for="{{ form.conferma_password.id_for_label }}" class="control-label ">Conferma password:</label>
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    {{ form.conferma_password }}
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label for="{{ form.nome.id_for_label }}" class="control-label ">Nome:</label>
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    {{ form.nome }}
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label for="{{ form.cognome.id_for_label }}" class="control-label ">Cognome:</label>
+                <div class="offset-md-3 col-md-6 offset-sm-0 col-sm-12">
+                    {{ form.cognome }}
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Registrati" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+{% endblock %}
